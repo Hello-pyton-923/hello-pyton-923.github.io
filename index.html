@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SM Browser</title>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      background: #f4f4f4;
+    }
+
+    header {
+      background: #333;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+
+    nav {
+      background: #444;
+      padding: 10px;
+      text-align: center;
+    }
+
+    nav a {
+      color: #fff;
+      margin: 0 15px;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .container {
+      padding: 20px;
+      flex: 1;
+    }
+
+    .download-button {
+      display: inline-block;
+      background-color: #d62828;
+      color: white;
+      padding: 14px 24px;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: bold;
+      font-size: 16px;
+      margin-top: 15px;
+    }
+
+    .download-button:hover {
+      background-color: #b71c1c;
+    }
+
+    .telegram-button {
+      display: inline-block;
+      background-color: #0088cc;
+      color: white;
+      padding: 12px 20px;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+
+    .telegram-button:hover {
+      background-color: #007ab8;
+    }
+
+    footer {
+      background-color: #000;
+      color: #fff;
+      text-align: center;
+      padding: 15px 0;
+      font-size: 14px;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.6);
+    }
+
+    .modal-content {
+      background-color: #fff;
+      margin: 10% auto;
+      padding: 30px;
+      border-radius: 8px;
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+      position: relative;
+      animation: fadeZoomIn 0.3s ease;
+    }
+
+    @keyframes fadeZoomIn {
+      from {
+        opacity: 0;
+        transform: scale(0.85);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .close {
+      color: #aaa;
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .close:hover {
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>SM Browser</h1>
+    <p>Быстрый. Безопасный. Удобный.</p>
+  </header>
+
+  <nav>
+    <a href="#home">Главная</a>
+    <a id="downloadBtn">Скачать</a>
+    <a id="contactBtn">Контакты</a>
+  </nav>
+
+  <section class="container" id="home">
+    <h2>Добро пожаловать в SM Browser</h2>
+    <p>
+      SM Browser — это <strong>новый</strong> веб-браузер, разработанный для <strong>любых</strong> Windows-компьютеров с любой мощностью, безопасности и удобства использования.
+      Мы стремимся предоставить пользователям <strong>лучший</strong> опыт в интернете.
+    </p>
+  </section>
+
+  <!-- Модальное окно Скачать -->
+  <div id="downloadModal" class="modal">
+    <div class="modal-content">
+      <span class="close" id="closeDownload">&times;</span>
+      <h2>Скачать SM Browser</h2>
+      <p>Нажмите кнопку ниже, чтобы загрузить установочный файл:</p>
+      <a class="download-button" href="https://github.com/Hello-pyton-923/hello-pyton-923.github.io/releases/download/queiqwueoiqwueioqwuouqwiuqie/SMBrowserSetup.exe" download>
+        ⬇ Скачать SM Browser
+      </a>
+    </div>
+  </div>
+
+  <!-- Модальное окно Контакты -->
+  <div id="contactModal" class="modal">
+    <div class="modal-content">
+      <span class="close" id="closeContact">&times;</span>
+      <h2>Контакты</h2>
+      <p>Свяжитесь с нами через Telegram:</p>
+      <a class="telegram-button" href="https://t.me/SMBrowserbot" target="_blank">🚀 Написать в Telegram</a>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 SM Browser. Все права защищены.
+  </footer>
+
+  <script>
+    const downloadBtn = document.getElementById('downloadBtn');
+    const contactBtn = document.getElementById('contactBtn');
+    const downloadModal = document.getElementById('downloadModal');
+    const contactModal = document.getElementById('contactModal');
+    const closeDownload = document.getElementById('closeDownload');
+    const closeContact = document.getElementById('closeContact');
+
+    function showModal(modal) {
+      const content = modal.querySelector('.modal-content');
+      content.style.animation = 'none';
+      void content.offsetWidth;
+      content.style.animation = 'fadeZoomIn 0.3s ease';
+      modal.style.display = 'block';
+    }
+
+    downloadBtn.onclick = () => showModal(downloadModal);
+    contactBtn.onclick = () => showModal(contactModal);
+
+    closeDownload.onclick = () => downloadModal.style.display = 'none';
+    closeContact.onclick = () => contactModal.style.display = 'none';
+
+    window.onclick = (event) => {
+      if (event.target === downloadModal) downloadModal.style.display = 'none';
+      if (event.target === contactModal) contactModal.style.display = 'none';
+    };
+  </script>
+</body>
+</html>
